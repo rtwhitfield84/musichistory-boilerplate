@@ -133,8 +133,12 @@ h1 {
 	color: #785616;
 }
 
+
 .songs li {
 	list-style-type: none;
+	padding: 5%;
+	color:  #785616;
+
 }
 
 
