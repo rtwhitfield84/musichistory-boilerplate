@@ -120,7 +120,7 @@ button {
 
 /*SONGS SECTION*/
 
-.songs {
+#songs {
 	border: 2px solid black;
 	flex-basis: 0;
 	flex-grow: 4;
@@ -134,12 +134,12 @@ h1 {
 }
 
 
-.songs li {
+/*.songs li {
 	list-style-type: none;
 	padding: 5%;
 	color:  #785616;
 
-}
+}*/
 
 
 
