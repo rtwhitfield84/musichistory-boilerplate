@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -8,15 +8,15 @@
 </head>
 <body>
 <header>
-	<nav>
+	<nav id="navBar">
 		<ul>
-		<li><a href="#">View Music</a><b>|</b></li>
-		<li><a href="#">Add Music</a><b>|</b></li>
-		<li><a href="#">Profile</a></li>
+		<li><a href="#" id="listMusicNav">List Music</a><b>|</b></li>
+		<li><a href="#" id="addMusicNav">Add Music</a></li>
+		<!-- <li><a href="#">Profile</a></li> -->
 		</ul>
 	</nav>
 </header>
-<div class="flexContainer">
+<div class="flexContainer" id="listMusicWrapper">
 <form action="#" method="get" id="selection">
 		<div class="sliderBox">
 			<label for="slider">Song length:</label>
@@ -60,17 +60,32 @@
 			</div>
 		</div>
 		<div class="buttonBox">
-	<button type="submit" form="selection" value="Filter">Filter</button>
+	<button id="listMusicBtn" type="submit" form="selection" value="Filter">Filter</button>
 	</div>
 </form>
+<div id="main">
 <div id="songs">
-	<!-- <ul id="songList">
-		
-	</ul> -->
+</div>
+<footer id="btnFooter"></footer>
 </div>
 </div>
-<!-- <script src="songs.js"></script> -->
-<script src="xhr.js"></script>
-<script src="songs.json"></script>
+	<div id="addmusic" class="hidden show">
+<div>
+	<h4>Song Name:</h4><input type="text" name="songName" id="songInputName" class="addInputs" size="20" >
+</div>
+<div>
+	<h4>Artist:</h4><input type="text" name="artist" id="songInputArtist" class="addInputs" size="20" >
+</div>
+<div>
+	<h4>Album:</h4><input type="text" name="album" id="songInputAlbum" class="addInputs" size="20" >
+</div>
+	<button id="addMusicBtn">ADD</button>
+<div>
+</div>
+</div>
+<script src="javascripts/songs.js"></script>
+<script src="javascripts/xhr.js"></script>
+<script src="javascripts/songs.json"></script>
+<script src="javascripts/songsTwo.json"></script>
 </body>
 </html>
