@@ -1,51 +1,42 @@
-/*GET INPUTS*/
-var addBtn = document.getElementById("addMusicBtn");
-var listBtn = document.getElementById("listMusicBtn");
-var navBar = document.getElementById("navBar");
-var listMusicNav = document.getElementById("listMusicNav");
-var addMusicNav = document.getElementById("addMusicNav");
-var addMusicSection = document.getElementById("addmusic");
-var listMusicWrapper = document.getElementById("listMusicWrapper");
-var songInputName = document.getElementById("songInputName");
-var songInputArtist = document.getElementById("songInputArtist");
-var songInputAlbum = document.getElementById("songInputAlbum");
-var songList = document.getElementById("songs");
-var newData;
+$(function () {
 
-/*EVENT LISTENERS*/
-navBar.addEventListener("click", function(event) {
-	if (event.target === addMusicNav) {
-		addMusicSection.classList.remove("hidden");
-		listMusicWrapper.classList.add("hidden");
-	} else if (event.target === listMusicNav) {
-		addMusicSection.classList.add("hidden");
-		listMusicWrapper.classList.remove("hidden");
-	}
+	$("#addMusicNav").click(function () {
+		$("#addmusic").removeClass("hidden");
+		$("#listMusicWrapper").addClass("hidden");
+});
+
+	$("#listMusicNav").click(function (){
+		$("#addmusic").addClass("hidden");
+		$("#listMusicWrapper").removeClass("hidden");
+});
+
+	$("#addMusicBtn").click(function (){
+
+		newDataName = $("#songInputName").val();
+		newDataArtist = $("#songInputArtist").val();
+		newDataAlbum = $("#songInputAlbum").val();
+		$("#songs").append(`<div class='song-block'><h3> ${newDataName}</h3><div class='artist'>Performed by${newDataArtist}</div><div class='album'>On the album${newDataAlbum} </div></div><button class='delete'>Delete</button>`);
+		songInputName.val('');
+		songInputArtist.val('');
+		songInputAlbum.val('');
+	});
 });
 
 
 
-addMusicSection.addEventListener("click", function(event) {
-	if (event.target === addBtn) {
-		newDataName = songInputName.value;
-		songList.innerHTML += "<div class='song-block'><h3>" + newDataName + "</h3>";
-		newDataArtist = songInputArtist.value;
-		songList.innerHTML += "<div class='artist'>Performed by " + newDataArtist + "</div";
-		newDataAlbum = songInputAlbum.value;
-		songList.innerHTML += "<div class='album'>On the album " + newDataAlbum + "</div></div>";
-		songList.innerHTML += "<button class='delete'>" + "Delete" + "</button>";
-		songInputName.value = "";
-		songInputArtist.value = "";
-		songInputAlbum.value = "";
-	}
-});
 
 
-//get value from inputs*
-//push to new data array
-//call dom function 
-//pass new data
-//
-//
-//
-//
+
+
+
+
+
+
+
+
+
+
+
+
+
+

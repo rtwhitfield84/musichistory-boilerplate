@@ -1,70 +1,44 @@
-var data;
-function executeThisIfXHRFails(xhrEvent) {
-}
+$(function () {
 
-function executeThisCodeAfterFileIsLoaded() {
-
-  
-  data = JSON.parse(this.responseText).songs;
-  dataMover(data);
-
-}
+  $.getJSON("songs.json", function (data) {
+      dataMover(data);
+  });
 
 function dataMover(data){
-  var songList = document.getElementById("songs");
-  var btnFooter = document.getElementById("btnFooter");
-  var deleteButton;
-  var deleteParent;
+    var songList = $("#songs");
 
-  for(currentSong in data) {
-    var songData = '';
-    var song = data[currentSong];
-    songData += "<div class='song-block'>";
-    songData += `<h3>${song.title}</h3>`;
-    songData += "<div class='artist'>Performed by ";
-    songData += song.artist;
-    songData += "</div>";
-    songData += "<div class='album'>On the album ";
-    songData += song.album;
-    songData += "</div>";
-    songData += "<button class='delete'>" + "Delete" + "</button>";
-    songData += "</div>";
-    songList.innerHTML += songData;
-   
-  }
+  $.each(data.songs, function(index, value) {
+    songList.append(`<div class='song-block'><h3>${value.title}</h3><div class='artist'>Performed by ${value.artist} </div><div class='album'>On the album ${value.album}</div><button class='delete'>Delete </button></div>`);
 
-if (!document.getElementById("more")) {
-  var moreButton = document.createElement("BUTTON");
-  moreButton.setAttribute("id", "more");
-  moreButton.innerHTML = "More >";
-
-  moreButton.addEventListener("click", function(event) {
-    moreSongs();
+  if ($(':not([more])')){
+    $("#btnFooter").append("button").attr("id", "more").html("More >");
+    }
   });
-}
-  btnFooter.appendChild(moreButton);
-  deleteButton = document.getElementsByClassName("delete");
-  deleteParent = document.getElementsByClassName("song-block");
-  songList.addEventListener("click", function(event) {
-  for (var i = 0; i < deleteParent.length; i++) {
-      if (event.target === deleteButton[i]) {
-        songList.removeChild(deleteParent[i]);
-       }
-      }
-  });
-}
- 
-var myRequest = new XMLHttpRequest();
+
+$("#more").click(function () {
+    $.getJSON("songsTwo.json", function (data) {
+    dataMover(data);
+    });
+});
+
+$(document).on('click','.delete',function() {
+    $(this).closest("div").remove();
+    });
+  } 
+});
 
 
-myRequest.addEventListener("load", executeThisCodeAfterFileIsLoaded);
-myRequest.addEventListener("error", executeThisIfXHRFails);
 
-myRequest.open("GET", "songs.json");
-myRequest.send();
 
-var moreSongs = function () {
-  myRequest.open("GET", "songsTwo.json");
-  myRequest.send();
-};
+
+
+
+
+
+
+
+
+
+
+
 
