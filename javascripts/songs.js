@@ -1,4 +1,7 @@
-$(function () {
+"use strict";	
+var xhr = require("./xhr.js");
+
+  var songObj = {};
 
 	$("#addMusicNav").click(function () {
 		$("#addmusic").removeClass("hidden");
@@ -11,22 +14,30 @@ $(function () {
 });
 
 	$("#addMusicBtn").click(function (){
-
-		newDataName = $("#songInputName").val();
-		newDataArtist = $("#songInputArtist").val();
-		newDataAlbum = $("#songInputAlbum").val();
-		$("#songs").append(`<div class='song-block'><h3> ${newDataName}</h3><div class='artist'>Performed by${newDataArtist}</div><div class='album'>On the album${newDataAlbum} </div></div><button class='delete'>Delete</button>`);
-		songInputName.val('');
-		songInputArtist.val('');
-		songInputAlbum.val('');
+			add();
+      $("#songInputName").focus();
 	});
-});
+	$("#songInputAlbum").keypress(function (e) {
+		if(e.keyCode !== 13) { 
+ 	} else {
+ 		add();
+    $("#songInputName").focus();
+ 	}	
+	});
 
 
-
-
-
-
+function add() {
+	songObj.title = $("#songInputName").val();
+	songObj.artist = $("#songInputArtist").val();
+	songObj.album = $("#songInputAlbum").val();
+	xhr.userAddedSongsArray.push(songObj);
+	xhr.dataMover(xhr.userAddedSongsArray);
+  xhr.userAddedSongsArray = [];
+	xhr.allSongsArray.push(songObj);
+	$("#songInputName").val('');
+	$("#songInputArtist").val('');
+	$("#songInputAlbum").val('');
+}
 
 
 
