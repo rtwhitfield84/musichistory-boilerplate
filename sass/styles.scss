@@ -1,0 +1,231 @@
+
+/*GENERAL*/  
+$navColor: #107A49;
+$formColor: #107A49;
+$btnColor: lightgrey;
+$songBoxColor: #107A49;
+$borderColor: #fff;
+$backgroundColor: #CED9D4;
+$textColor: #fff;
+
+body {
+	width: 90%;
+	margin: 2% 5%;
+	background-color: $backgroundColor;
+	color: $textColor;
+	text-shadow: 1px 1px #000; 
+}
+
+.flexContainer {
+	display: flex;
+	flex-direction: row;
+}
+
+/*NAV*/
+
+nav {	
+	border: 2px solid $borderColor;
+	margin: 20px 40px 10px 50px;
+	background-color: $navColor; 
+}
+
+nav li  {
+	display: inline-block;
+	list-style-type: none;
+}
+
+nav li a {
+	font-weight: bold;
+	padding: 2px;
+}
+
+a:visited {
+	color: #5FB38B;
+}
+
+/*FILTER FORM*/
+
+form {
+	display: flex;
+	margin-left: 50px;
+	padding: 1%;
+	border: 2px solid $borderColor;
+	flex-basis: 0;
+	flex-grow: 1;
+	background-color: $formColor;
+}
+
+.sliderBox,
+.artistBox,
+.albumBox,
+.buttonBox{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 8% auto;
+}
+
+
+#selection {
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-around;
+}
+
+#genre {
+	display: flex;
+	align-items: flex-end;
+	margin: 8% auto;
+}
+
+.genBoxLeft,
+.genBoxMid,
+.genBoxRight {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+label {
+	padding: 10px 0;
+	font-weight: 500;
+	font-size: 1.2em;
+}
+
+#slider {
+	height: 5px;
+	border: 2px solid $borderColor;
+	background-color: $btnColor;
+}
+
+input[type=range],
+select,
+option {
+	width: 150px;
+	font-weight: 600;
+	box-sizing: content-box;
+	border: 2px solid $borderColor;
+}
+
+input[type=checkbox] {
+	width: 50px;
+	box-sizing: content-box;
+    border: 2px solid $borderColor;
+}
+
+#listMusicBtn {
+	height: 30px;
+	width: 125px;
+	margin-left: 25%;
+	font-size: 1em;
+	font-weight: 600;
+	background-color: $btnColor;
+	border: 2px solid $borderColor;
+	border-radius: 10px;
+}
+
+#filterBtn{
+	height: 30px;
+	width: 125px;
+	margin: 0 auto;
+	font-size: 1em;
+	font-weight: 600;
+	color: #fff;
+	text-shadow: 1px 1px #000; 
+	background-color: $btnColor;
+	border: 2px solid $borderColor;
+	border-radius: 10px;
+}
+
+
+/*SONGS SECTION*/
+
+#main {
+	border: 2px solid $borderColor;
+	background-color: $songBoxColor;
+	flex-basis: 0;
+	flex-grow: 4;
+	margin-right: 40px;
+	margin-left: 15px;
+}
+
+h3 {
+	font-size: 1.5em;
+	color: $textColor;
+	margin: 1% 0;
+}
+
+
+/*ADD MUSIC STYLES*/
+
+.songInput {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid $borderColor;
+	align-items: center;
+}
+
+inputs .addInputs {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 1% auto;
+}
+
+h4 {
+	text-align: center;
+}
+
+.show {
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	flex-direction: column;
+	border: 1px solid $borderColor;
+	height: 70%;
+	width: 30%;
+	margin:  2% auto;
+}
+
+#addMusicBtn {
+	height: 30px;
+	width: 125px;
+	font-size: 1em;
+	font-weight: 600;
+	color: #fff;
+	text-shadow: 1px 1px #000;
+	background-color: $btnColor;
+	border: 2px solid $borderColor;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.hidden {
+	display: none;
+}
+
+.delete {
+	height: 20px;
+	width: 60px;
+	margin: 1%;
+	font-size: .5em;
+	font-weight: 600;
+	color: #fff;
+	text-shadow: 1px 1px #000; 
+	background-color: $btnColor;
+	border: 2px solid $borderColor;
+	border-radius: 5px;
+}
+
+
+ #more {
+ 	height: 30px;
+	width: 125px;
+	font-size: 1em;
+	font-weight: 600;
+	color: #fff;
+	background-color: $btnColor;
+	border: 2px solid $borderColor;
+	border-radius: 10px;
+	text-align: center;
+ }
