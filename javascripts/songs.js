@@ -4,13 +4,13 @@ var xhr = require("./xhr.js");
   var songObj = {};
 
 	$("#addMusicNav").click(function () {
-		$("#addmusic").removeClass("hidden");
-		$("#listMusicWrapper").addClass("hidden");
+		$("#addMusic").removeClass("hide");
+		$("#listMusicWrapper").addClass("hide");
 });
 
 	$("#listMusicNav").click(function (){
-		$("#addmusic").addClass("hidden");
-		$("#listMusicWrapper").removeClass("hidden");
+		$("#addMusic").addClass("hide");
+		$("#listMusicWrapper").removeClass("hide");
 });
 
 	$("#addMusicBtn").click(function (){
@@ -42,10 +42,21 @@ function add() {
 
 
 
+/*Firebase stuff*/
 
 
-
-
+// <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+// <script>
+//   // Initialize Firebase
+//   var config = {
+//     apiKey: "AIzaSyB7r_ccXtvDouTLBKFzbcI1xjiRPYgV2PQ",
+//     authDomain: "musichistory-79ae9.firebaseapp.com",
+//     databaseURL: "https://musichistory-79ae9.firebaseio.com",
+//     storageBucket: "musichistory-79ae9.appspot.com",
+//     messagingSenderId: "909988233980"
+//   };
+//   firebase.initializeApp(config);
+// </script>
 
 
 

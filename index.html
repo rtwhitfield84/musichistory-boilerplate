@@ -2,89 +2,120 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <title>Music History</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<title>Music History</title>
 </head>
-<body>
-<header>
-	<nav id="navBar">
-		<ul>
-		<li><a href="#" id="listMusicNav">List Music</a><b>|</b></li>
-		<li><a href="#" id="addMusicNav">Add Music</a></li>
-		<!-- <li><a href="#">Profile</a></li> -->
-		</ul>
-	</nav>
-</header>
-<div class="flexContainer" id="listMusicWrapper">
-	<form action="#" method="get" id="selection">
-			<div class="sliderBox">
-				<label for="slider">Song length:</label>
-				<input type="range" name="slider" id="slider" value="0" height="10" min="0" max="100" step="1">
+	<body>
+		<header>
+			<div class="container">
+				<nav id="navBar" class="navbar navbar">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="#"></a>
+						</div>
+					</div>
+					<div class="navbar" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><a href="#" id="listMusicNav">List Music</a></li>
+							<li><a href="#" id="addMusicNav">Add Music</a></li>
+						</ul>
+					</div>
+				</nav>
 			</div>
+		</header>
+	<div id="listMusicWrapper" class="container">
+		<div class="row row-flex row-flex-wrap">
+			<div class="col-md-4">
+				<form action="#" method="get" id="selection">
+				<div class="sliderBox">
+					<label for="slider">Song length:</label>
+					<input type="range" name="slider" id="slider" value="0" height="10" min="0" max="100" step="1">
+				</div>
 			<div class="artistBox">
-		<label>Artist:</label>
-			<select name="Artist" id="Artist">
-				<option value="Artist">Artist</option>
-				<option value="Elliott Smith">Elliott Smith</option>
-				<option value="Beck">Beck</option>
-				<option value="Mississippi John Hurt">Mississippi John Hurt</option>
-				<option value="Radiohead">Radiohead</option>
-				<option value="The Strokes">The Strokes</option>
-			</select>
+				<label>Artist:</label>
+					<select class="form-control" name="Artist" id="Artist">
+						<option value="Artist">Artist</option>
+						<option value="Elliott Smith">Elliott Smith</option>
+						<option value="Beck">Beck</option>
+						<option value="Mississippi John Hurt">Mississippi John Hurt</option>
+						<option value="Radiohead">Radiohead</option>
+						<option value="The Strokes">The Strokes</option>
+					</select>
 			</div>
 			<div class="albumBox">
-		<label>Album:</label>
-			<select name="Album" id="Album">
-				<option value="Album">Album</option>
-				<option value="Figure 8">Figure 8</option>
-				<option value="Sea Change">Sea Change</option>
-				<option value="Today">Today!</option>
-				<option value="Kid A">Kid A</option>
-				<option value="Is This It?">Is This It?</option>
-			</select>
+				<label>Album:</label>
+					<select class="form-control" name="Album" id="Album">
+						<option value="Album">Album</option>
+						<option value="Figure 8">Figure 8</option>
+						<option value="Sea Change">Sea Change</option>
+						<option value="Today">Today!</option>
+						<option value="Kid A">Kid A</option>
+						<option value="Is This It?">Is This It?</option>
+					</select>
 			</div>
-			<div class="genreBox" id="genre">
-				<div class="genBoxLeft">
-				<label>Genre:</label>
-				<input type="checkbox" name="genre" value="Rock">Rock
-				<input type="checkbox" name="genre" value="Rock">Rock
-				</div>
-				<div class="genBoxMid">
-				<input type="checkbox" name="genre" value="Rock">Rock
-				<input type="checkbox" name="genre
-				" value="Rock">Rock
-				</div>
-				<div class="genBoxRight">
-				<input type="checkbox" name="genre" value="Rock">Rock
-				<input type="checkbox" name="genre
-				" value="Rock">Rock
-				</div>
+			<div class="form-group">
+				<label class="form-check-inline">
+					<input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="genre" value="Rock">Rock
+				</label>
+				<label class="form-check-inline">
+					<input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="genre" value="Folk">Folk
+				</label>
+				<label class="form-check-inline">
+					<input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="genre" value="pop">Pop
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="form-check-inline">
+					<input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="genre" value="classical">Classical
+				</label>
+				<label class="form-check-inline">
+					<input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="genre" value="Jazz"> Jazz
+				</label>
+				<label class="form-check-inline">
+					<input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="genre" value="Alt">Alt
+				</label>
+
 			</div>
 			<div class="buttonBox">
-		<button id="filterBtn">Filter</button>
-		</div>
-	</form>
-	<div id="main">
-		<div id="songs"></div>
-	<footer id="btnFooter"></footer>
+				<button id="filterBtn">Filter</button>
+			</div>
+
+			</form>
 	</div>
-</div>
-	<div id="addmusic" class="hidden show">
-		<div>
-			<h4>Song Name:</h4><input type="text" name="songName" id="songInputName" class="addInputs" size="20" >
+		<div class="col-md-8">
+			<div id="main">
+						<div id="songs"></div>
+						<footer id="btnFooter"></footer>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="addMusic" class="container hide">
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<form>
+						<div class="form-group">
+							<label>Song Name:</label>
+							<input type="text" class="form-control addInputs" id="songInputName" placeholder="Example input">
+						</div>
+						<div class="form-group">
+							<label>Artist:</label>
+							<input type="text" class="form-control addInputs" id="songInputArtist" placeholder="Another input">
+						</div>
+						<div class="form-group">
+							<label>Album:</label>
+							<input type="text" class="form-control addInputs" id="songInputAlbum" placeholder="Another input">
+						</div>
+						<button id="addMusicBtn">ADD</button>
+						</form>
+				</div>
 		</div>
-		<div>
-			<h4>Artist:</h4><input type="text" name="artist" id="songInputArtist" class="addInputs" size="20" >
-		</div>
-		<div>
-			<h4>Album:</h4><input type="text" name="album" id="songInputAlbum" class="addInputs" size="20" >
-		</div>
-			<button id="addMusicBtn">ADD</button>
-		<div>
-		</div>
-	</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="/dist/app.js"></script>
-</body>
+				<div class="col-md-4"></div>
+			</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/dist/app.js"></script>
+	</body>
 </html>

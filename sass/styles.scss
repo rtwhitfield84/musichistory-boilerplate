@@ -9,35 +9,80 @@ $backgroundColor: #CED9D4;
 $textColor: #fff;
 
 body {
-	width: 90%;
-	margin: 2% 5%;
+	// width: 90%;
+	// margin: 2% 5%;
 	background-color: $backgroundColor;
 	color: $textColor;
 	text-shadow: 1px 1px #000; 
+	height: 100%;
 }
+// .row-flex, .row-flex > div[class*='col-'] {  
+//     display: -webkit-box;
+//     display: -moz-box;
+//     display: -ms-flexbox;
+//     display: -webkit-flex;
+//     display: flex;
+//     flex:1 1 auto;
+// }
 
-.flexContainer {
-	display: flex;
-	flex-direction: row;
-}
+// .row-flex-wrap {
+// 	-webkit-flex-flow: row wrap;
+//     align-content: flex-start;
+//     flex:0;
+// }
+
+// .row-flex > div[class*='col-'], .container-flex > div[class*='col-'] {
+// 	 margin:-.2px; /* hack adjust for wrapping */
+// }
+
+// .container-flex > div[class*='col-'] div,.row-flex > div[class*='col-'] div {
+// 	width:100%;
+// }
+
+
+// .flex-col {
+//     display: flex;
+//     display: -webkit-flex;
+//     flex: 1 100%;
+// 	flex-flow: column nowrap;
+// }
+
+// .flex-grow {
+// 	display: flex;
+//     -webkit-flex: 2;
+//     flex: 2;
+// }
+
+// .row{
+//     overflow: hidden; 
+// }
+
+// [class*="col-"]{
+//     margin-bottom: -99999px;
+//     padding-bottom: 99999px;
+// }
+// .flexContainer {
+// 	display: flex;
+// 	flex-direction: row;
+// }
 
 /*NAV*/
 
 nav {	
 	border: 2px solid $borderColor;
-	margin: 20px 40px 10px 50px;
+	// margin: 20px 40px 10px 50px;
 	background-color: $navColor; 
 }
 
-nav li  {
-	display: inline-block;
-	list-style-type: none;
-}
+// nav li  {
+// 	display: inline-block;
+// 	list-style-type: none;
+// }
 
-nav li a {
-	font-weight: bold;
-	padding: 2px;
-}
+// nav li a {
+// 	font-weight: bold;
+// 	padding: 2px;
+// }
 
 a:visited {
 	color: #5FB38B;
@@ -46,12 +91,12 @@ a:visited {
 /*FILTER FORM*/
 
 form {
-	display: flex;
-	margin-left: 50px;
-	padding: 1%;
+	// display: flex;
+	// margin-left: 50px;
+	// padding: 1%;
 	border: 2px solid $borderColor;
-	flex-basis: 0;
-	flex-grow: 1;
+	// flex-basis: 0;
+	// flex-grow: 1;
 	background-color: $formColor;
 }
 
@@ -62,38 +107,32 @@ form {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	margin: 8% auto;
+	margin: 20% auto;
 }
 
+.form-group {
+	margin: 10%;
+}
+label .form-check-inline {
+	padding: 1%;
+} 
 
+.form-check-inline {
+	margin: 3%;
+	
+}
 #selection {
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: space-around;
+	height: 785px;
 }
 
-#genre {
-	display: flex;
-	align-items: flex-end;
-	margin: 8% auto;
-}
 
-.genBoxLeft,
-.genBoxMid,
-.genBoxRight {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-}
 
 label {
-	padding: 10px 0;
 	font-weight: 500;
 	font-size: 1.2em;
 }
 
 #slider {
-	height: 5px;
 	border: 2px solid $borderColor;
 	background-color: $btnColor;
 }
@@ -101,22 +140,17 @@ label {
 input[type=range],
 select,
 option {
-	width: 150px;
 	font-weight: 600;
 	box-sizing: content-box;
 	border: 2px solid $borderColor;
 }
 
 input[type=checkbox] {
-	width: 50px;
-	box-sizing: content-box;
+	
     border: 2px solid $borderColor;
 }
 
 #listMusicBtn {
-	height: 30px;
-	width: 125px;
-	margin-left: 25%;
 	font-size: 1em;
 	font-weight: 600;
 	background-color: $btnColor;
@@ -143,44 +177,34 @@ input[type=checkbox] {
 #main {
 	border: 2px solid $borderColor;
 	background-color: $songBoxColor;
-	flex-basis: 0;
-	flex-grow: 4;
-	margin-right: 40px;
-	margin-left: 15px;
+
 }
 
 h3 {
 	font-size: 1.5em;
 	color: $textColor;
-	margin: 1% 0;
 }
 
 
 /*ADD MUSIC STYLES*/
 
 .songInput {
-	display: flex;
-	flex-direction: column;
 	border: 1px solid $borderColor;
-	align-items: center;
 }
 
 inputs .addInputs {
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	margin: 1% auto;
 }
 
 h4 {
 	text-align: center;
 }
+.hide{ 
+	display: none;
+}
 
 .show {
-	display: flex;
-  	align-items: center;
-  	justify-content: center;
-  	flex-direction: column;
+ 	background-color: $formColor;
 	border: 1px solid $borderColor;
 	height: 70%;
 	width: 30%;
@@ -198,11 +222,9 @@ h4 {
 	border: 2px solid $borderColor;
 	border-radius: 10px;
 	text-align: center;
+	margin: 1% 30%;
 }
 
-.hidden {
-	display: none;
-}
 
 .delete {
 	height: 20px;
