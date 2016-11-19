@@ -9,80 +9,19 @@ $backgroundColor: #CED9D4;
 $textColor: #fff;
 
 body {
-	// width: 90%;
-	// margin: 2% 5%;
 	background-color: $backgroundColor;
 	color: $textColor;
 	text-shadow: 1px 1px #000; 
 	height: 100%;
 }
-// .row-flex, .row-flex > div[class*='col-'] {  
-//     display: -webkit-box;
-//     display: -moz-box;
-//     display: -ms-flexbox;
-//     display: -webkit-flex;
-//     display: flex;
-//     flex:1 1 auto;
-// }
-
-// .row-flex-wrap {
-// 	-webkit-flex-flow: row wrap;
-//     align-content: flex-start;
-//     flex:0;
-// }
-
-// .row-flex > div[class*='col-'], .container-flex > div[class*='col-'] {
-// 	 margin:-.2px; /* hack adjust for wrapping */
-// }
-
-// .container-flex > div[class*='col-'] div,.row-flex > div[class*='col-'] div {
-// 	width:100%;
-// }
-
-
-// .flex-col {
-//     display: flex;
-//     display: -webkit-flex;
-//     flex: 1 100%;
-// 	flex-flow: column nowrap;
-// }
-
-// .flex-grow {
-// 	display: flex;
-//     -webkit-flex: 2;
-//     flex: 2;
-// }
-
-// .row{
-//     overflow: hidden; 
-// }
-
-// [class*="col-"]{
-//     margin-bottom: -99999px;
-//     padding-bottom: 99999px;
-// }
-// .flexContainer {
-// 	display: flex;
-// 	flex-direction: row;
-// }
 
 /*NAV*/
 
-nav {	
+.navx {	
 	border: 2px solid $borderColor;
-	// margin: 20px 40px 10px 50px;
 	background-color: $navColor; 
 }
 
-// nav li  {
-// 	display: inline-block;
-// 	list-style-type: none;
-// }
-
-// nav li a {
-// 	font-weight: bold;
-// 	padding: 2px;
-// }
 
 a:visited {
 	color: #5FB38B;
@@ -90,13 +29,9 @@ a:visited {
 
 /*FILTER FORM*/
 
-form {
-	// display: flex;
-	// margin-left: 50px;
-	// padding: 1%;
+#selection,
+#addMusic form {
 	border: 2px solid $borderColor;
-	// flex-basis: 0;
-	// flex-grow: 1;
 	background-color: $formColor;
 }
 
@@ -177,6 +112,8 @@ input[type=checkbox] {
 #main {
 	border: 2px solid $borderColor;
 	background-color: $songBoxColor;
+	height: 785px;
+	overflow: scroll ;
 
 }
 

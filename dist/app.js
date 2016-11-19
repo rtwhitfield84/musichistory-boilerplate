@@ -3,6 +3,8 @@
 var xhr = require("./xhr.js");
 
   var songObj = {};
+  var filteredVal;
+  var key;
 
 	$("#addMusicNav").click(function () {
 		$("#addMusic").removeClass("hide");
@@ -25,39 +27,43 @@ var xhr = require("./xhr.js");
     $("#songInputName").focus();
  	}	
 	});
+	$('select').change(function () {
+	filteredVal = $(this).val();
+	key = this.id;
+	});
 
+	$("#filterBtn").click(function () {
+		xhr.filterSongs(key, filteredVal);
+		$('option').prop('selected', function() {
+        return this.defaultSelected;
+    });	
+		 $("#genre").find("input").prop('checked', false);
+	});
+
+	$('#genre').change(function () {
+		filteredVal = $(":checkbox:checked").val();
+		key = this.id;
+	});
+
+//get value of genre then filter by specific artist or album
 
 function add() {
 	songObj.title = $("#songInputName").val();
 	songObj.artist = $("#songInputArtist").val();
 	songObj.album = $("#songInputAlbum").val();
+	songObj.genre = $("#songInputGenre").val();
 	xhr.userAddedSongsArray.push(songObj);
 	xhr.dataMover(xhr.userAddedSongsArray);
-  xhr.userAddedSongsArray = [];
-	xhr.allSongsArray.push(songObj);
+  	xhr.userAddedSongsArray.pop();
 	$("#songInputName").val('');
 	$("#songInputArtist").val('');
 	$("#songInputAlbum").val('');
+	$("#songInputGenre").val('');
 }
 
 
 
 
-/*Firebase stuff*/
-
-
-// <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
-// <script>
-//   // Initialize Firebase
-//   var config = {
-//     apiKey: "AIzaSyB7r_ccXtvDouTLBKFzbcI1xjiRPYgV2PQ",
-//     authDomain: "musichistory-79ae9.firebaseapp.com",
-//     databaseURL: "https://musichistory-79ae9.firebaseio.com",
-//     storageBucket: "musichistory-79ae9.appspot.com",
-//     messagingSenderId: "909988233980"
-//   };
-//   firebase.initializeApp(config);
-// </script>
 
 
 
@@ -66,132 +72,83 @@ function add() {
 
 },{"./xhr.js":2}],2:[function(require,module,exports){
 "use strict";
-  var songsArray = [];
-  var newSongsArray = [];
-  var allSongsArray = [];
-  var userAddedSongsArray =[];
-  var songList = $("#songs");
-  
-  $.getJSON("songs.json", function (data) {
-      songsArray = data.songs;
-      dataMover(songsArray);
-  });
 
-function dataMover(data){
-    for (var i = 0; i < data.length; i++) {
-    songList.append(`<div class='song-block'><h3>${data[i].title}</h3><div class='artist'>Performed by ${data[i].artist} </div><div class='album'>On the album ${data[i].album}</div><button class='delete'>Delete </button></div>`);
+let songList = $("#songs"),
+    userAddedSongsArray = [],
+    artistSelect = $("#artist"),
+    albumSelect = $("#album"),
+    genreForm = $("#genre");
 
-  if ($(':not([more])')){
-    $("#btnFooter").append("button").attr("id", "more").html("More >");
-    }
-  }
 
-$("#more").click(function () {
-      dataMover(newSongsArray);
-      newSongsArray = [];
-});
-    $.getJSON("songsTwo.json", function (data) {
-      newSongsArray = data.songs;
-      allSongsArray = songsArray.concat(newSongsArray);
+  function getSongs(callback) {
+  return new Promise(function(resolve, reject){
+    $.ajax({
+      url: 'https://musichistoryv8songs.firebaseio.com/songs.json'
+    }).done(function(songData){
+      resolve(songData);
     });
+  });
+}
+  getSongs()
+    .then(function(songData){
+    //add the id to each song and then build the song list
+     var idArray = Object.keys(songData);
+      idArray.forEach(function(key){
+      songData[key].id = key;
+    });
+    //now make the list with songData
+    dataMover(songData);
+  });
+  //when checkkbox is checked or select given value and filter btn pressed, make call to DB and grab songs that match the value 
+
+  var filterSongs = (key,value) => {
+    return new Promise(function(resolve, reject) {
+      $.ajax({
+        url: `https://musichistoryv8songs.firebaseio.com/songs.json?orderBy="${key}"&equalTo="${value}"`
+      }).done(function(data){
+        resolve(data);
+        songList.html('');
+        dataMover(data);
+      });
+    });
+  };
+
+  // https://musichistorydemo-18461.firebaseio.com/songs.json?orderBy="uid"&equalTo="${user}"
+
+function dataMover(data) {
+    $.each(data, function(index,element) {
+      songList.append(`<div class='song-block'><h3>${element.title}</h3><div class='artist'>Performed by ${element.artist} </div><div class='album'>On the album ${element.album}</div><button class='delete'>Delete </button></div>`);
+
+      if(artistSelect.children('option[value="' + element.artist + '"]').length === 0) {
+      artistSelect.append(`<option id='${element.artist}' class='selectOpt' value='${element.artist}'>${element.artist}</option>`);
+    }
+      if (albumSelect.children('option[value="' + element.album + '"]').length === 0) {
+      albumSelect.append(`<option id='${element.album}' class='selectOpt' value='${element.album}'>${element.album}</option>`);
+    }
+
+      if(genreForm.children('label[for="' + element.genre + '"]').length === 0) {
+      genreForm.append(`<label for="${element.genre}" class="form-check-inline"><input class="form-check-input " type="checkbox" id="${element.genre}" name="genre" value="${element.genre}">${element.genre}</label>`);
+    }
+      if ($(':not([more])')){
+      $("#btnFooter").append("button").attr("id", "more").html("More >");
+    }
+  });
+}
+
+
+
+// $("#more").click(function () {
+//       dataMover(newSongsArray);
+//       newSongsArray = [];
+// });
 
 $(document).on('click','.delete',function() {
     $(this).closest("div").remove();
     });
-  } 
-
-$('#Artist').change(function(){
-
-  if(this.value === "Elliott Smith") {
-    var es = $.grep(allSongsArray, function (element, index) {
-      $('#Artist').val("Artist");
-    return element.artist === "Elliott Smith";
-  });
-    songList.html("");
-    dataMover(es);
- } else if(this.value === "Beck") {
-     var beck = $.grep(allSongsArray, function (element, index) {
-     $('#Artist').val("Artist");
-     return element.artist === "Beck";
-  });
-    songList.html("");
-    dataMover(beck);
- } else if (this.value === "Mississippi John Hurt") {
-  var msj = $.grep(allSongsArray, function (element, index) {
-    $('#Artist').val("Artist");
-    return element.artist === "Mississippi John Hurt";
-  });
-    songList.html("");
-    dataMover(msj);
- } else if (this.value === "Radiohead") {
-  var radiohead = $.grep(allSongsArray, function (element, index) {
-    $('#Artist').val("Artist");
-    return element.artist === "Radiohead";
-  });
-    songList.html("");
-    dataMover(radiohead);
- } else if (this.value === "The Strokes") {
-  var strokes = $.grep(allSongsArray, function (element, index) {
-    $('#Artist').val("Artist");
-    return element.artist === "The Strokes";
-  });
-    songList.html("");
-    dataMover(strokes);
- } else {
-  songList.html("");
-  dataMover(allSongsArray);
- }
-
-});
-
-$('#Album').change(function(){
-
-  if(this.value === "Figure 8") {
-    var figure8 = $.grep(allSongsArray, function (element, index) {
-     $('#Album').val("Album");
-    return element.album === "Figure 8";
-  });
-    songList.html("");
-    dataMover(figure8);
- } else if(this.value === "Sea Change") {
-     var seaChange = $.grep(allSongsArray, function (element, index) {
-     $('#Album').val("Album");
-     return element.album === "Sea Change";
-  });
-    songList.html("");
-    dataMover(seaChange);
- } else if (this.value === "Today") {
-  var today = $.grep(allSongsArray, function (element, index) {
-    $('#Album').val("Album");
-    return element.album === "Today!";
-  });
-    songList.html("");
-    dataMover(today);
- } else if (this.value === "Kid A") {
-  var kidA = $.grep(allSongsArray, function (element, index) {
-    $('#Album').val("Album");
-    return element.album === "Kid A";
-  });
-    songList.html("");
-    dataMover(kidA);
- } else if (this.value === "Is This It?") {
-  var iti = $.grep(allSongsArray, function (element, index) {
-    $('#Album').val("Album");
-    return element.album === "Is This It?";
-  });
-    songList.html("");
-    dataMover(iti);
- } else {
-  songList.html("");
-    dataMover(allSongsArray);
- }
-
-});
 
 
 
-module.exports = {dataMover,
-allSongsArray, userAddedSongsArray};
+module.exports = {dataMover, filterSongs, userAddedSongsArray};
 
 
 

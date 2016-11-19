@@ -2,6 +2,8 @@
 var xhr = require("./xhr.js");
 
   var songObj = {};
+  var filteredVal;
+  var key;
 
 	$("#addMusicNav").click(function () {
 		$("#addMusic").removeClass("hide");
@@ -24,39 +26,43 @@ var xhr = require("./xhr.js");
     $("#songInputName").focus();
  	}	
 	});
+	$('select').change(function () {
+	filteredVal = $(this).val();
+	key = this.id;
+	});
 
+	$("#filterBtn").click(function () {
+		xhr.filterSongs(key, filteredVal);
+		$('option').prop('selected', function() {
+        return this.defaultSelected;
+    });	
+		 $("#genre").find("input").prop('checked', false);
+	});
+
+	$('#genre').change(function () {
+		filteredVal = $(":checkbox:checked").val();
+		key = this.id;
+	});
+
+//get value of genre then filter by specific artist or album
 
 function add() {
 	songObj.title = $("#songInputName").val();
 	songObj.artist = $("#songInputArtist").val();
 	songObj.album = $("#songInputAlbum").val();
+	songObj.genre = $("#songInputGenre").val();
 	xhr.userAddedSongsArray.push(songObj);
 	xhr.dataMover(xhr.userAddedSongsArray);
-  xhr.userAddedSongsArray = [];
-	xhr.allSongsArray.push(songObj);
+  	xhr.userAddedSongsArray.pop();
 	$("#songInputName").val('');
 	$("#songInputArtist").val('');
 	$("#songInputAlbum").val('');
+	$("#songInputGenre").val('');
 }
 
 
 
 
-/*Firebase stuff*/
-
-
-// <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
-// <script>
-//   // Initialize Firebase
-//   var config = {
-//     apiKey: "AIzaSyB7r_ccXtvDouTLBKFzbcI1xjiRPYgV2PQ",
-//     authDomain: "musichistory-79ae9.firebaseapp.com",
-//     databaseURL: "https://musichistory-79ae9.firebaseio.com",
-//     storageBucket: "musichistory-79ae9.appspot.com",
-//     messagingSenderId: "909988233980"
-//   };
-//   firebase.initializeApp(config);
-// </script>
 
 
 

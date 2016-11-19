@@ -6,7 +6,7 @@ body {
   height: 100%; }
 
 /*NAV*/
-nav {
+.navx {
   border: 2px solid #fff;
   background-color: #107A49; }
 
@@ -14,7 +14,8 @@ a:visited {
   color: #5FB38B; }
 
 /*FILTER FORM*/
-form {
+#selection,
+#addMusic form {
   border: 2px solid #fff;
   background-color: #107A49; }
 
@@ -79,7 +80,9 @@ input[type=checkbox] {
 /*SONGS SECTION*/
 #main {
   border: 2px solid #fff;
-  background-color: #107A49; }
+  background-color: #107A49;
+  height: 785px;
+  overflow: scroll; }
 
 h3 {
   font-size: 1.5em;

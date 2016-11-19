@@ -10,7 +10,7 @@
 	<body>
 		<header>
 			<div class="container">
-				<nav id="navBar" class="navbar navbar">
+				<nav id="navBar" class="navbar navx">
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<a class="navbar-brand" href="#"></a>
@@ -28,61 +28,30 @@
 	<div id="listMusicWrapper" class="container">
 		<div class="row row-flex row-flex-wrap">
 			<div class="col-md-4">
-				<form action="#" method="get" id="selection">
+				<div id="selection">
 				<div class="sliderBox">
 					<label for="slider">Song length:</label>
 					<input type="range" name="slider" id="slider" value="0" height="10" min="0" max="100" step="1">
 				</div>
 			<div class="artistBox">
 				<label>Artist:</label>
-					<select class="form-control" name="Artist" id="Artist">
-						<option value="Artist">Artist</option>
-						<option value="Elliott Smith">Elliott Smith</option>
-						<option value="Beck">Beck</option>
-						<option value="Mississippi John Hurt">Mississippi John Hurt</option>
-						<option value="Radiohead">Radiohead</option>
-						<option value="The Strokes">The Strokes</option>
+					<select class="form-control" name="Artist" id="artist">
+						<option value="Artist" selected="selected">Artist</option>
 					</select>
 			</div>
 			<div class="albumBox">
 				<label>Album:</label>
-					<select class="form-control" name="Album" id="Album">
-						<option value="Album">Album</option>
-						<option value="Figure 8">Figure 8</option>
-						<option value="Sea Change">Sea Change</option>
-						<option value="Today">Today!</option>
-						<option value="Kid A">Kid A</option>
-						<option value="Is This It?">Is This It?</option>
+					<select class="form-control" name="Album" id="album">
+						<option value="Album" selected="selected">Album</option>
 					</select>
 			</div>
-			<div class="form-group">
-				<label class="form-check-inline">
-					<input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="genre" value="Rock">Rock
-				</label>
-				<label class="form-check-inline">
-					<input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="genre" value="Folk">Folk
-				</label>
-				<label class="form-check-inline">
-					<input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="genre" value="pop">Pop
-				</label>
-			</div>
-			<div class="form-group">
-				<label class="form-check-inline">
-					<input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="genre" value="classical">Classical
-				</label>
-				<label class="form-check-inline">
-					<input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="genre" value="Jazz"> Jazz
-				</label>
-				<label class="form-check-inline">
-					<input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="genre" value="Alt">Alt
-				</label>
-
-			</div>
+			<form id="genre" class="form-group">
+			</form>
 			<div class="buttonBox">
 				<button id="filterBtn">Filter</button>
 			</div>
 
-			</form>
+			</div>
 	</div>
 		<div class="col-md-8">
 			<div id="main">
@@ -99,15 +68,19 @@
 						<form>
 						<div class="form-group">
 							<label>Song Name:</label>
-							<input type="text" class="form-control addInputs" id="songInputName" placeholder="Example input">
+							<input type="text" class="form-control addInputs" id="songInputName" placeholder="Song">
 						</div>
 						<div class="form-group">
 							<label>Artist:</label>
-							<input type="text" class="form-control addInputs" id="songInputArtist" placeholder="Another input">
+							<input type="text" class="form-control addInputs" id="songInputArtist" placeholder="Artist">
 						</div>
 						<div class="form-group">
 							<label>Album:</label>
-							<input type="text" class="form-control addInputs" id="songInputAlbum" placeholder="Another input">
+							<input type="text" class="form-control addInputs" id="songInputAlbum" placeholder="Album">
+						</div>
+						<div class="form-group">
+							<label>Genre:</label>
+							<input type="text" class="form-control addInputs" id="songInputGenre" placeholder="Genre">
 						</div>
 						<button id="addMusicBtn">ADD</button>
 						</form>
